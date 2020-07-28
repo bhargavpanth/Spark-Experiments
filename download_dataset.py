@@ -19,3 +19,13 @@ def extract_dataset():
 
 def delete_zipped_dataset_folder():
     pass
+
+def main():
+    # download dataset
+    # download checksum
+    # extract dataset
+    # read contents from checksum file and check the checksum of the extracted dataset
+    pass
+
+if __name__ == "__main__":
+    main()
