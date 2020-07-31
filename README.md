@@ -18,7 +18,7 @@ To run this project, make sure that you have Spark installed on your machine
 * Add `export PYSPARK_PYTHON=python3`
 
 
-Once you do, paste the following commands in your terminal
+Once you do, paste the following commands in your terminal. The `ratings_counter.py` script generates a histogram of the ratings of all the movies in the dataset.
 
 ```bash
 $ spark-submit ratings_counter.py
