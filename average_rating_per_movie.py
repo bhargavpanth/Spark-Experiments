@@ -6,3 +6,6 @@ class AverageMovieRating:
         self.sc = SparkContext(conf = self.conf)
         self.file = './ml-100k/u.data'
 
+    def load(self):
+        return self.sc.textFile(self.file)
+
