@@ -9,3 +9,8 @@ class AverageMovieRating:
     def load(self):
         return self.sc.textFile(self.file)
 
+    def read(self):
+        lines = self.load()
+        ratings = lines.mapValues(lambda x: x.split()[2], x.split()[1])
+        return ratings.countByValue()
+
