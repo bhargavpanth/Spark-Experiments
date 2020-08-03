@@ -15,7 +15,10 @@ class AverageMovieRating:
         return total_rating_by_movie.mapValues(lambda x: x[0]/x[1])
 
     def plot(self):
-        pass
+        average_rating_per_movie = self.read()
+        results = average_rating_per_movie.collect()
+        for result in results:
+            print(result)
 
 
 
