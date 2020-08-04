@@ -11,7 +11,8 @@ class AverageMovieRating:
 
     def read(self):
         lines = self.load()
-        total_rating_by_movie = lines.map(lambda x: (x.split()[2], x.split()[1])).mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (x[0] + y[0], x[1] + y[1]))
+        ratings = lines.map(lambda x: (x.split()[2], x.split()[1]))
+        total_rating_by_movie = ratings.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (x[0] + y[0], x[1] + y[1]))
         return total_rating_by_movie.mapValues(lambda x: x[0]/x[1])
 
     def plot(self):
@@ -21,7 +22,7 @@ class AverageMovieRating:
             print(result)
 
 def main():
-    ratings = AverageMovieRating().plot()
+    AverageMovieRating().plot()
 
 if __name__ == '__main__':
     main()

@@ -27,5 +27,5 @@ def main():
     # read contents from checksum file and check the checksum of the extracted dataset
     pass
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
