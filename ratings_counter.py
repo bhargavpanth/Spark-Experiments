@@ -22,7 +22,7 @@ class Ratings:
             print('%s %i' % (key, value))
 
 def main():
-    ratings = Ratings().plot()
+    Ratings().plot()
 
 if __name__ == '__main__':
     main()
