@@ -14,3 +14,15 @@ class WordCount:
         lines = self.load()
         words = lines.flatMap(lambda x: x.split())
         return words.countByValue()
+
+    def plot(self):
+        for word, count in self.read_book().item():
+            cleanWord = word.encode('ascii', 'ignore')
+            if (cleanWord):
+                print(cleanWord, count)
+
+def main():
+    WordCount().plot()
+
+if __name__ == '__main__':
+    main()
