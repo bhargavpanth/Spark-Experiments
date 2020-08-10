@@ -16,10 +16,8 @@ class WordCount:
         return words.countByValue()
 
     def plot(self):
-        for word, count in self.read_book().item():
-            cleanWord = word.encode('ascii', 'ignore')
-            if (cleanWord):
-                print(cleanWord, count)
+        # map over the RDD
+        print(self.read_book())
 
 def main():
     WordCount().plot()
