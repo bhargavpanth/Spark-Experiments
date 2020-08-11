@@ -10,6 +10,9 @@ class WordCount:
     def load(self):
         return self.sc.textFile(self.file)
 
+    def regularize_text(self):
+        pass
+
     def read_book(self):
         lines = self.load()
         words = lines.flatMap(lambda x: x.split())
