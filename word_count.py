@@ -1,5 +1,5 @@
 from pyspark import SparkConf, SparkContext
-import collections
+import re
 
 class WordCount:
     def __init__(self):
