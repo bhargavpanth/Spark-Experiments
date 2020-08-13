@@ -17,7 +17,8 @@ class WordCount:
         lines = self.load()
         # self.regularize_text
         words = lines.flatMap(lambda x: x.split())
-        return words.countByValue()
+        wordCount = words.map(lambda x: (x , 1)).reduceByKey(lambda x,y: x + y)
+        return wordCount.countByValue()
 
     def plot(self):
         # map over the RDD
