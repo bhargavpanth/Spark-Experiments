@@ -1,4 +1,6 @@
 from pyspark.sql import SparkSession
 from pyspark.sql import Row
 
-spark = SparkSession.builder.appName('test_spark_sql').getOrCreate()
+class SparkSession:
+    def __init__(self):
+        self.spark = SparkSession.builder.appName('test_spark_sql').getOrCreate()
