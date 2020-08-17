@@ -4,6 +4,10 @@ from pyspark.sql import Row
 class Session:
     def __init__(self):
         self.spark = SparkSession.builder.appName('test_spark_sql').getOrCreate()
+        self.df = self.spark.sparkContext.textFile('./datasets/fakefriends.csv')
+
+    def mapper(self, data):
+        pass
 
 
 # spark = SparkSession.builder.appName("SparkSQL").getOrCreate()
