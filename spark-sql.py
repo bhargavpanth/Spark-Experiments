@@ -4,11 +4,13 @@ from pyspark.sql import Row
 class Session:
     def __init__(self):
         self.spark = SparkSession.builder.appName('test_spark_sql').getOrCreate()
-        self.df = self.spark.sparkContext.textFile('./datasets/fakefriends.csv')
+        self.file = './datasets/fakefriends.csv'
 
     def mapper(self, data):
         pass
 
+    def load(self):
+        return self.spark.sparkContext.textFile(self.file)
 
 # spark = SparkSession.builder.appName("SparkSQL").getOrCreate()
 
