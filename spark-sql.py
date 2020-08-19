@@ -7,10 +7,18 @@ class Session:
         self.file = './datasets/fakefriends.csv'
 
     def mapper(self, data):
-        pass
+        fields = data.split(',')
+        return Row(ID=int(fields[0]), name=str(fields[1].encode("utf-8")), age=int(fields[2]), numFriends=int(fields[3]))
 
     def load(self):
         return self.spark.sparkContext.textFile(self.file)
+
+    def read(self):
+        lines = self.load()
+        people = lines.map(self.mapper)
+        schemaPeople = self.spark.createDataFrame(people).cache()
+        schemaPeople.createOrReplaceTempView('people_schema')
+
 
 # spark = SparkSession.builder.appName("SparkSQL").getOrCreate()
 
