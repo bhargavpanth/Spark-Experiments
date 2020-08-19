@@ -16,8 +16,8 @@ class Session:
     def read(self):
         lines = self.load()
         people = lines.map(self.mapper)
-        schemaPeople = self.spark.createDataFrame(people).cache()
-        schemaPeople.createOrReplaceTempView('people_schema')
+        schema = self.spark.createDataFrame(people).cache()
+        schema.createOrReplaceTempView('people_schema')
 
 
 # spark = SparkSession.builder.appName("SparkSQL").getOrCreate()
