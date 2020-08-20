@@ -19,6 +19,15 @@ class Session:
         schema = self.spark.createDataFrame(people).cache()
         schema.createOrReplaceTempView('people_schema')
 
+    def get_people_of_different_ages(self):
+        pre_teens = self.spark.sql('SELECT * FROM people WHERE age >= 10 AND age < 13')
+        teenagers = self.spark.sql('SELECT * FROM people WHERE age >= 13 AND age <= 19')
+        young_adults = self.spark.sql('SELECT * FROM people WHERE age >= 19 AND age <= 23')
+        adults = self.spark.sql('SELECT * FROM people WHERE age > 24')
+        return [pre_teens, teenagers, young_adults, adults]
+
+    def show_all(self):
+        [pre_teens, teenagers, young_adults, adults] = self.get_people_of_different_ages()
 
 # spark = SparkSession.builder.appName("SparkSQL").getOrCreate()
 
