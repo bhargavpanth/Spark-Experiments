@@ -6,12 +6,9 @@ class WordCount:
         self.spark = SparkSession.builder.appName('WordCount').getOrCreate()
         self.inputDF = self.spark.read.text('./datasets/modern_prometheus.txt')
 
-    def split(self):
-        words = self.inputDF.select(func.explode(func.split(self.inputDF.value, "\\W+")).alias("word"))
-        return words.filter(words.word != '')
-
     def normalize(self):
-        words = self.split()
+        words = self.inputDF.select(func.explode(func.split(self.inputDF.value, "\\W+")).alias("word"))
+        words.filter(words.word != '')
         return words.select(func.lower(words.word).alias('word'))
 
     def sorted_word_count(self):
@@ -21,3 +18,8 @@ class WordCount:
         wordCountsSorted = wordCounts.sort('count')
         wordCountsSorted.show(wordCountsSorted.count())
 
+def main():
+    WordCount().sorted_word_count()
+
+if __name__ == '__main__':
+    main()
