@@ -12,8 +12,8 @@ class WordCount:
         return words.select(func.lower(words.word).alias('word'))
 
     def sorted_word_count(self):
-        lowercaseWords = self.normalize()
-        wordCounts = lowercaseWords.groupBy('word').count()
+        lower_case_words = self.normalize()
+        wordCounts = lower_case_words.groupBy('word').count()
         # Sort by counts
         wordCountsSorted = wordCounts.sort('count')
         wordCountsSorted.show(wordCountsSorted.count())
