@@ -2,6 +2,12 @@ from pyspark.sql import SparkSession
 from pyspark.sql import functions as func
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType
 
+
+class MinTemp:
+    def __init__(self):
+        self.spark = SparkSession.builder.appName('min_temperature').getOrCreate()
+        self.file = './dataset/1800.csv'
+
 spark = SparkSession.builder.appName('min_temperature').getOrCreate()
 
 schema = StructType([ \
