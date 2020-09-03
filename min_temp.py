@@ -8,6 +8,18 @@ class MinTemp:
         self.spark = SparkSession.builder.appName('min_temperature').getOrCreate()
         self.file = './dataset/1800.csv'
 
+    def schema(self):
+        return StructType([\
+            StructField('stationID', StringType(), True), \
+            StructField('date', IntegerType(), True), \
+            StructField('measure_type', StringType(), True), \
+            StructField('temperature', FloatType(), True) \
+        ])
+
+    def read(self):
+        schema = self.schema()
+        return self.spark.read.schema(schema).csv(self.file)
+
 spark = SparkSession.builder.appName('min_temperature').getOrCreate()
 
 schema = StructType([ \
