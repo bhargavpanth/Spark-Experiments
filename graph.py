@@ -13,6 +13,9 @@ class Graph:
         lines = self.spark.read.text('./datasets/graph.txt')
         return [names, lines]
 
+    def connections(self):
+        [names, lines] = self.read()
+
 def main():
     pass
 
