@@ -8,7 +8,9 @@ class Graph:
         self.schema = StructType([StructField('id', IntegerType(), True), StructField('name', StringType(), True)])
 
     def read(self):
-        pass
+        schema = self.schema
+        names = self.spark.read.schema(schema).option('sep', ' ').csv('./datasets/names.txt')
+        lines = self.spark.read.text('./datasets/graph.txt')
 
 def main():
     pass
