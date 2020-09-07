@@ -11,6 +11,7 @@ class Graph:
         schema = self.schema
         names = self.spark.read.schema(schema).option('sep', ' ').csv('./datasets/names.txt')
         lines = self.spark.read.text('./datasets/graph.txt')
+        return [names, lines]
 
 def main():
     pass
