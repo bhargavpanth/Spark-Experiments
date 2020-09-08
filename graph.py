@@ -15,6 +15,10 @@ class Graph:
 
     def connections(self):
         [names, lines] = self.read()
+        connections = lines.withColumn('id', func.split(func.col('value'), ' ')[0]) \
+            .withColumn('connections', func.size(func.split(func.col('value'), ' ')) - 1) \
+            .groupBy('id').agg(func.sum('connections').alias('connections'))
+        return connections
 
 def main():
     pass
