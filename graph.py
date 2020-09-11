@@ -43,7 +43,30 @@ def main():
     '''
     Graph().most_obscure()
     '''
-    
+    The following characters have only 1 connection(s):
+    +--------------------+
+    |                name|
+    +--------------------+
+    |        BERSERKER II|
+    |              BLARE/|
+    |MARVEL BOY II/MARTIN|
+    |MARVEL BOY/MARTIN BU|
+    |      GIURESCU, RADU|
+    |       CLUMSY FOULUP|
+    |              FENRIS|
+    |              RANDAK|
+    |           SHARKSKIN|
+    |     CALLAHAN, DANNY|
+    |         DEATHCHARGE|
+    |                RUNE|
+    |         SEA LEOPARD|
+    |         RED WOLF II|
+    |              ZANTOR|
+    |JOHNSON, LYNDON BAIN|
+    |          LUNATIK II|
+    |                KULL|
+    |GERVASE, LADY ALYSSA|
+    +--------------------+
     '''
 
 if __name__ == '__main__':
