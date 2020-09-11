@@ -41,6 +41,10 @@ def main():
     '''
     CAPTAIN AMERICA is the most popular superhero with 1937 co-appearances.
     '''
+    Graph().most_obscure()
+    '''
+    
+    '''
 
 if __name__ == '__main__':
     main()
