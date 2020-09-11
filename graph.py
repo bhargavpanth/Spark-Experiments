@@ -28,7 +28,13 @@ class Graph:
         print(most_popular_name[0] + ' is the most popular superhero with ' + str(most_popular[1]) + ' co-appearances.')
 
     def most_obscure(self):
-        pass
+        connections = self.connections()
+        [names, lines] = self.read()
+        min_connection_count = connections.agg(func.min('connections')).first()[0]
+        min_connections = connections.filter(func.col('connections') == min_connection_count)
+        min_connections_with_names = min_connections.join(names, 'id')
+        print('The following characters have only ' + str(min_connection_count) + ' connection(s):')
+        min_connections_with_names.select('name').show()
 
 def main():
     Graph().most_popular()
