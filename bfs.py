@@ -6,9 +6,9 @@ sc = SparkContext(conf = conf)
 class RDD:
     def __init__(self):
         self.text_file = sc.textFile('./dataset/graph.txt')
-        self.bfs = self.text_file.map(self.convert_to_bfs)
+        self.bfs = self.text_file.map(self.__convert_to_bfs)
 
-    def convert_to_bfs(self, line):
+    def __convert_to_bfs(self, line):
         start_id = 5306
         fields = line.split()
         person_id = int(fields[0])
