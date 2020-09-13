@@ -22,5 +22,13 @@ class RDD:
         if (person_id == start_id):
             colour = 'GRAY'
             distance = 0
-            
+
         return (person_id, (connections, distance, colour))
+
+    def convert_to_bfs(self):
+        return self.convert_to_bfs()
+
+def main():
+    iteration_rdd = RDD().convert_to_bfs()
+    # for iteration in range(0, 10):
+    #     print("Running BFS iteration# " + str(iteration+1))
