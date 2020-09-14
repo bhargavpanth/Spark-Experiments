@@ -56,6 +56,9 @@ def bfs_map(node):
     results.append( (character_id, (connections, distance, color)) )
     return results
 
+def bfs_reduce():
+    pass
+
 def main():
     iteration_rdd = RDD().convert_to_bfs()
     for iteration in range(0, 10):
