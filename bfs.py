@@ -60,3 +60,11 @@ def main():
     iteration_rdd = RDD().convert_to_bfs()
     for iteration in range(0, 10):
         print('Running BFS iteration# ' + str(iteration+1))
+        mapped = iteration_rdd.flatMap(bfs_map)
+        print('Processing ' + str(mapped.count()) + ' values')
+        if (hit_counter.value > 0):
+            print('Hit from ' + str(hit_counter.value) + 'different direction(s).')
+            break
+        # Reducer combines data for each character ID, preserving the darkest
+        # color and shortest path.
+        # iteration_rdd = mapped.reduceByKey(bfsReduce)
