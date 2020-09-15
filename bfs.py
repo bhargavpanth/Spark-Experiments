@@ -56,8 +56,43 @@ def bfs_map(node):
     results.append( (character_id, (connections, distance, color)) )
     return results
 
-def bfs_reduce():
-    pass
+def bfs_reduce(node_one, node_two):
+    edges1 = node_one[0]
+    edges2 = node_two[0]
+    distance_one = node_one[1]
+    distance_two = node_two[1]
+    colour_one = node_one[2]
+    colour_two = node_two[2]
+
+    distance = 9999
+    color = colour_one
+    edges = []
+
+    if (len(edges1) > 0):
+        edges.extend(edges1)
+    if (len(edges2) > 0):
+        edges.extend(edges2)
+
+    # Minimum distance
+    if (distance_one < distance):
+        distance = distance_one
+
+    if (distance_two < distance):
+        distance = distance_two
+
+    if (colour_one == 'WHITE' and (colour_two == 'GRAY' or colour_two == 'BLACK')):
+        color = colour_two
+
+    if (colour_one == 'GRAY' and colour_two == 'BLACK'):
+        color = colour_two
+
+    if (colour_two == 'WHITE' and (colour_one == 'GRAY' or colour_one == 'BLACK')):
+        color = colour_one
+
+    if (colour_two == 'GRAY' and colour_one == 'BLACK'):
+        color = colour_one
+
+    return (edges, distance, color)
 
 def main():
     iteration_rdd = RDD().convert_to_bfs()
