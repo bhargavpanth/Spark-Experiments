@@ -105,4 +105,7 @@ def main():
             break
         # Reducer combines data for each character ID, preserving the darkest
         # color and shortest path.
-        # iteration_rdd = mapped.reduceByKey(bfsReduce)
+        iteration_rdd = mapped.reduceByKey(bfs_reduce)
+
+if __name__ == '__main__':
+    main()
