@@ -20,3 +20,9 @@ def movie_schema():
                 StructField('rating', IntegerType(), True), \
                 StructField('timestamp', LongType(), True) \
             ])
+
+def main():
+    name_schema = movie_name_schema()
+    # Broadcast dataset of movieID and movieTitle
+    movieNames = spark.read.option('sep', '|').option('charset', 'ISO-8859-1') \
+      .schema(name_schema).csv('./ml-100k/u.item')
