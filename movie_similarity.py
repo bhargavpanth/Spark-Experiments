@@ -8,7 +8,15 @@ spark = SparkSession.builder.appName('movie_similarities').master('local[*]').ge
 
 
 def movie_name_schema():
-    return StructType([ StructField('movieID', IntegerType(), True), StructField('movieTitle', StringType(), True) ])
+    return StructType([ \
+        StructField('movieID', IntegerType(), True), \
+        StructField('movieTitle', StringType(), True) \
+    ])
 
 def movie_schema():
-    pass
+    return StructType([ \
+                StructField('userID', IntegerType(), True), \
+                StructField('movieID', IntegerType(), True), \
+                StructField('rating', IntegerType(), True), \
+                StructField('timestamp', LongType(), True) \
+            ])
