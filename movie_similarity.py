@@ -30,5 +30,7 @@ def main():
     schema = movie_schema()
     movies = spark.read.option('sep', '\t').schema(schema) \
       .csv('./ml-100k/u.data')
+    # Ratings
+    ratings = movies.select('userId', 'movieId', 'rating')
 
     
