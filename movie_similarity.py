@@ -26,3 +26,9 @@ def main():
     # Broadcast dataset of movieID and movieTitle
     movieNames = spark.read.option('sep', '|').option('charset', 'ISO-8859-1') \
       .schema(name_schema).csv('./ml-100k/u.item')
+    # Movie data
+    schema = movie_schema()
+    movies = spark.read.option('sep', '\t').schema(schema) \
+      .csv('./ml-100k/u.data')
+
+    
