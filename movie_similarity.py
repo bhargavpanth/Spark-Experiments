@@ -3,6 +3,7 @@ Script uses Spark's cluster manager
 '''
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, LongType
+from pyspark.sql import functions as func
 
 spark = SparkSession.builder.appName('movie_similarities').master('local[*]').getOrCreate()
 
@@ -32,5 +33,13 @@ def main():
       .csv('./ml-100k/u.data')
     # Ratings
     ratings = movies.select('userId', 'movieId', 'rating')
+
+    moviePairs = ratings.alias('ratings1') \
+      .join(ratings.alias('ratings2'), (func.col('ratings1.userId') == func.col('ratings2.userId')) \
+            & (func.col('ratings1.movieId') < func.col('ratings2.movieId'))) \
+      .select(func.col('ratings1.movieId').alias('movie1'), \
+        func.col('ratings2.movieId').alias('movie2'), \
+        func.col('ratings1.rating').alias('rating1'), \
+        func.col('ratings2.rating').alias('rating2'))
 
     
