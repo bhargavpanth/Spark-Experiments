@@ -25,7 +25,7 @@ def movie_schema():
 def main():
     name_schema = movie_name_schema()
     # Broadcast dataset of movieID and movieTitle
-    movieNames = spark.read.option('sep', '|').option('charset', 'ISO-8859-1') \
+    movie_names = spark.read.option('sep', '|').option('charset', 'ISO-8859-1') \
       .schema(name_schema).csv('./ml-100k/u.item')
     # Movie data
     schema = movie_schema()
@@ -34,7 +34,7 @@ def main():
     # Ratings
     ratings = movies.select('userId', 'movieId', 'rating')
 
-    moviePairs = ratings.alias('ratings1') \
+    movie_pairs = ratings.alias('ratings1') \
       .join(ratings.alias('ratings2'), (func.col('ratings1.userId') == func.col('ratings2.userId')) \
             & (func.col('ratings1.movieId') < func.col('ratings2.movieId'))) \
       .select(func.col('ratings1.movieId').alias('movie1'), \
