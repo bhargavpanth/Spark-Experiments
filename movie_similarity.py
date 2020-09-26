@@ -33,7 +33,6 @@ def main():
       .csv('./ml-100k/u.data')
     # Ratings
     ratings = movies.select('userId', 'movieId', 'rating')
-
     movie_pairs = ratings.alias('ratings1') \
       .join(ratings.alias('ratings2'), (func.col('ratings1.userId') == func.col('ratings2.userId')) \
             & (func.col('ratings1.movieId') < func.col('ratings2.movieId'))) \
@@ -41,5 +40,6 @@ def main():
         func.col('ratings2.movieId').alias('movie2'), \
         func.col('ratings1.rating').alias('rating1'), \
         func.col('ratings2.rating').alias('rating2'))
+    # Compute the cosine similarity between the movies
 
     
