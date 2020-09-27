@@ -1,6 +1,3 @@
-'''
-Script uses Spark's cluster manager
-'''
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, LongType
 from pyspark.sql import functions as func
@@ -63,5 +60,3 @@ def main():
         func.col('ratings2.rating').alias('rating2'))
     # Compute the cosine similarity between the movies
     pairs = movie_similarity(movie_pairs)
-
-    
