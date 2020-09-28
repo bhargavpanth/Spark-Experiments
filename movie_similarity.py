@@ -1,3 +1,4 @@
+import sys
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, LongType
 from pyspark.sql import functions as func
@@ -59,4 +60,18 @@ def main():
         func.col('ratings1.rating').alias('rating1'), \
         func.col('ratings2.rating').alias('rating2'))
     # Compute the cosine similarity between the movies
-    pairs = movie_similarity(movie_pairs)
+    pairs = movie_similarity(movie_pairs).cache()
+
+    if (len(sys.argv) > 1):
+        score_threshold = 0.97
+        co_occurrence_threshold = 50.0
+        movieID = int(sys.argv[1])
+        # Filter for movies with this sim that are "good" our quality thresholds above
+        filtered_esults = pairs.filter( \
+            ((func.col('movie1') == movieID) | (func.col('movie2') == movieID)) & \
+            (func.col('score') > score_threshold) & (func.col('numPairs') > co_occurrence_threshold) \
+        )
+
+        # Sort by quality
+        results = filtered_esults.sort(func.col('score').desc()).take(10)
+
