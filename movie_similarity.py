@@ -41,6 +41,10 @@ def movie_similarity(movie_pairs):
         ).select('movie1', 'movie2', 'score', 'num_pairs')
     return result
 
+def get_movie_name(movie_pairs, movie_id):
+    return movie_pairs.filter(func.col('movieID') == movie_id) \
+        .select('movieTitle').collect()[0][0]
+
 def main():
     name_schema = movie_name_schema()
     # Broadcast dataset of movieID and movieTitle
