@@ -71,11 +71,21 @@ def main():
         co_occurrence_threshold = 50.0
         movieID = int(sys.argv[1])
         # Filter for movies with this sim that are "good" our quality thresholds above
-        filtered_esults = pairs.filter( \
+        filtered_results = pairs.filter( \
             ((func.col('movie1') == movieID) | (func.col('movie2') == movieID)) & \
             (func.col('score') > score_threshold) & (func.col('numPairs') > co_occurrence_threshold) \
         )
-
         # Sort by quality
-        results = filtered_esults.sort(func.col('score').desc()).take(10)
+        results = filtered_results.sort(func.col('score').desc()).take(10)
+        for result in results:
+            similar_movie_id = result.movie1
+            if (similar_movie_id == movieID):
+                similar_movie_id = result.movie2
+
+            print(get_movie_name(movie_names, similar_movie_id) + '\tscore: ' \
+                + str(result.score) + '\tstrength: ' + str(result.numPairs))
+
+
+if __name__ == '__main__':
+    main()
 
