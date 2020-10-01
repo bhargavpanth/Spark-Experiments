@@ -24,3 +24,6 @@ def main():
     for prediction in predictionAndLabel:
       print(prediction)
     spark.stop()
+
+if __name__ == '__main__':
+    main()
