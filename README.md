@@ -23,3 +23,5 @@ Once you do, paste the following commands in your terminal. The `ratings_counter
 ```bash
 $ spark-submit ratings_counter.py
 ```
+
+PS - for some of the scipts, you will have to download the movie lense dataset. One of my (other repositories)[https://github.com/bhargavpanth/Movie-recommender] has a script for downloading the required dataset. Else, just download the (movie lense 100k dataset)[https://grouplens.org/datasets/movielens/] and place the extracted folder at the root of this project.
